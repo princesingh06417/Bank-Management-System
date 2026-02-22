@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account Activation</title>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <style>
+        body {
+            margin: 0;
+            background-color: #E4E9F7;
+        }
+
+        .container {
+            display: flex;
+            /* Use flexbox for layout */
+            margin-left: 5%;
+            justify-content: center;
+            /* Center content */
+            align-items: flex-start;
+            /* Align items at the start */
+            padding: 20px;
+            /* Add some padding */
+        }
+
+        .form-container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            width: 50%;
+            /* Adjusted width */
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            font-family: 'Arial', sans-serif;
+            border: 1px solid #e0e0e0;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .form-row label {
+            font-size: 16px;
+            font-weight: 600;
+            width: 30%;
+            color: #333;
+        }
+
+        .form-row input {
+            width: 65%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            background-color: #f7f7f7;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #000;
+            color: #fff;
+            font-size: 16px;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 150px;
+            margin: 5px 0;
+        }
+
+        button:hover {
+            background-color: #333;
+        }
+
+        .buttons-row {
+            display: flex;
+            justify-content: space-between;
+            /* Align buttons to the sides */
+            margin-top: 20px;
+            gap: 30px;
+        }
+
+        /* Card container styling */
+        .card-container {
+            margin-left: 20px;
+            width: 70%;
+            /* Ensured right-side space */
+        }
+
+        /* Update card container size for larger view */
+        .card {
+            width: 600px;
+            height: 400px;
+            position: relative;
+            perspective: 1000px;
+            margin: 0;
+            padding: 0;
+            border-radius: 16px;
+        }
+
+        /* Inner card styling */
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            border-radius: 16px;
+        }
+
+        .card .front,
+        .card .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .card .front {
+            transform: rotateY(0deg);
+        }
+
+        .card .back {
+            transform: rotateY(180deg);
+        }
+
+        .card.flip .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        /* Card details */
+        .card-details {
+            position: absolute;
+            bottom: 15%;
+            left: 15%;
+            color: #fff;
+        }
+
+        .card-expiry,
+        .card-name {
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* Card details on the front */
+        .card-number {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 20px;
+            letter-spacing: 10px;
+            font-weight: bold;
+        }
+
+        /* Style for card name */
+        .card-name {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: -20px;
+        }
+
+        /* Style for expiry date */
+        .card-expiry {
+            margin-top: 30px;
+            font-size: 16px;
+            margin-left: 86%;
+            margin-top: -2px;
+        }
+
+        /* CVV on the back */
+        .card-cvv {
+            font-size: 16px;
+            position: absolute;
+            top: 42%;
+            right: 14%;
+            transform: translateY(-50%);
+        }
+
+        /* Ensure the parent container has perspective */
+        .card-container {
+            perspective: 1000px;
+        }
+
+        /* Ensure the card has transform-style and transition for flipping */
+        .card {
+            width: 500px;
+            height: 282px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+
+        /* Flip the card when the 'flip' class is added */
+        .card.flip {
+            transform: rotateY(180deg);
+        }
+
+        /* Front and back card faces */
+        .card .front,
+        .card .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        /* Back face rotation */
+        .card .back {
+            transform: rotateY(180deg);
+        }
+        .btn-find{
+            margin-left: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Left: Form Section -->
+        <div class="form-container">
+            <h2>Debit Card Apply</h2>
+            <form id="activationForm">
+                <div class="form-row">
+                    <label for="accountNo">Account No:</label>
+                    <input type="text" id="accountNo" name="accountNo" placeholder="Enter Account Number" required />
+                </div>
+
+                <div class="form-row">
+                    <button type="button" class="btn-find">Find</button>
+                </div>
+
+                <div class="form-row">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" readonly />
+                </div>
+
+                <div class="form-row">
+                    <label for="customerID">Customer ID:</label>
+                    <input type="text" id="customerID" name="customerID" readonly />
+                </div>
+
+                <div class="form-row">
+                    <label for="cardNumber">Card Number:</label>
+                    <input type="text" id="cardNumber" name="cardNumber" placeholder="Enter Card Number" required
+                        readonly />
+                </div>
+
+                <div class="form-row">
+                    <label for="expDate">Expiry Date:</label>
+                    <input type="text" id="expDate" name="expDate" placeholder="MM/YY" required readonly />
+                </div>
+
+                <div class="form-row">
+                    <label for="cvv">CVV:</label>
+                    <input type="text" id="cvv" name="cvv" readonly />
+                </div>
+
+                <div class="form-row">
+                    <label for="pin">Pin:</label>
+                    <input type="text" id="pin" name="pin" readonly />
+                </div>
+
+                <div class="buttons-row">
+                    <button type="submit" id="backButton" class="btn-back">Back</button>
+                    <button type="reset" class="btn-reset">Reset</button>
+                    <button type="button" class="btn-activate">Generate</button>
+                    <button type="button" class="btn-deactivate">Deactivate</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Right: Debit Card Section -->
+        <div class="card-container">
+            <div class="card">
+                <!-- Front of the Debit Card -->
+                <div class="front">
+                    <img id="image1" src="Images/[removal.ai]_04ac001c-38f9-4308-9e76-2c3894e1661b-d4tz6dnv.png"
+                        alt="Front of Debit Card" />
+                    <div class="card-details">
+
+                        <span class="card-number"></span>
+                        <span class="card-name"></span>
+                        <span id="car_exp" class="card-expiry"></span>
+
+                    </div>
+                </div>
+
+                <!-- Back of the Debit Card -->
+                <div class="back">
+                    <img id="image2" src="Images/6zxv2oqg-fotor-bg-remover-2024100619245.png" alt="Back of Debit Card" />
+                    <div class="card-cvv">
+                        <span class="card-cvv-value"></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Handle Back Button Click
+        // Handle Back Button Click
+        document.getElementById('backButton').addEventListener('click', function () {
+            window.history.back();
+        });
+        const card = document.querySelector('.card');
+
+        // Add click event listener to the card for flipping
+        card.addEventListener('click', function () {
+            card.classList.toggle('flip');
+        });
+        // Handle Find Button Click
+        document.querySelector('.btn-find').addEventListener('click', async function () {
+            const accountNo = document.getElementById('accountNo').value;
+
+            if (!accountNo) {
+                alert('Please enter an account number');
+                return;
+            }
+
+            // Fetch account or card details from backend using account number
+            const response = await fetch(`/find-account/${accountNo}`);
+            const data = await response.json();
+
+            if (data.success) {
+                if (data.debitCard) {
+                    // If debit card exists, populate fields with card data
+                    document.getElementById('name').value = data.debitCard.name;
+                    document.getElementById('customerID').value = data.debitCard.customerID;
+                    document.getElementById('cardNumber').value = data.debitCard.cardNumber;
+                    document.getElementById('expDate').value = data.debitCard.expiryDate;
+                    document.getElementById('cvv').value = data.debitCard.cvv;
+                    document.getElementById('pin').value = data.debitCard.pin;
+
+                    // Display the card number, expiry date, and name on the card front
+                    document.querySelector('.card-number').textContent = formatCardNumber(data.debitCard.cardNumber);
+                    document.querySelector('.card-expiry').textContent = data.debitCard.expiryDate;
+                    document.querySelector('.card-name').textContent = data.debitCard.name;
+
+                    // Display the CVV on the card back
+                    document.querySelector('.card-cvv-value').textContent = data.debitCard.cvv;
+
+                } else {
+                    // If debit card does not exist, populate name and customer ID
+                    document.getElementById('name').value = data.account.name;
+                    document.getElementById('customerID').value = data.account.customerID;
+
+                    // Populate generated card details
+                    document.getElementById('cardNumber').value = data.cardDetails.cardNumber;
+                    document.getElementById('expDate').value = data.cardDetails.expiryDate;
+                    document.getElementById('cvv').value = data.cardDetails.cvv;
+                    document.getElementById('pin').value = data.cardDetails.pin;
+
+                    // Display the generated card number, expiry date, and name on the card front
+                    document.querySelector('.card-number').textContent = formatCardNumber(data.cardDetails.cardNumber);
+                    document.querySelector('.card-expiry').textContent = data.cardDetails.expiryDate;
+                    document.querySelector('.card-name').textContent = data.account.name;
+
+                    // Display the generated CVV on the card back
+                    document.querySelector('.card-cvv-value').textContent = data.cardDetails.cvv;
+                }
+            } else {
+                alert('Account not found');
+            }
+        });
+
+        // Handle Activate Button Click
+        document.querySelector('.btn-activate').addEventListener('click', async function () {
+            const accountNumber = document.getElementById('accountNo').value;
+            const name = document.getElementById('name').value;
+            const customerID = document.getElementById('customerID').value;
+            const cardNumber = document.getElementById('cardNumber').value;
+            const expDate = document.getElementById('expDate').value;
+            const cvv = document.getElementById('cvv').value;
+            const pin = document.getElementById('pin').value;
+
+            const response = await fetch('/activate-debit-card', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ accountNumber, name, customerID, cardNumber, expiryDate: expDate, cvv, pin })
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                alert('Debit card activated successfully!');
+
+                // Display the activated card number, expiry date, and name on the card front
+                document.querySelector('.card-number').textContent = formatCardNumber(cardNumber);
+                document.querySelector('.card-expiry').textContent = expDate;
+                document.querySelector('.card-name').textContent = name;
+
+                // Display the activated CVV on the card back
+                document.querySelector('.card-cvv-value').textContent = cvv;
+            } else {
+                alert(data.message);
+            }
+        });
+
+        // Utility function to format the card number in groups of 4 digits
+        function formatCardNumber(cardNumber) {
+            return cardNumber.replace(/(\d{4})(?=\d)/g, '$1 ');  // Adds space after every 4 digits
+        }
+
+        // Handle Deactivate Button Click
+        document.querySelector('.btn-deactivate').addEventListener('click', async function () {
+            const accountNumber = document.getElementById('accountNo').value;
+
+            if (!accountNumber) {
+                alert('Please enter an account number');
+                return;
+            }
+
+            // Confirm deactivation
+            const confirmDeactivation = confirm('Are you sure you want to deactivate the debit card for this account?');
+            if (!confirmDeactivation) return;
+
+            // Send the deactivation request to the server
+            const response = await fetch(`/deactivate-debit-card/${accountNumber}`, {
+                method: 'DELETE'
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                alert('Debit card deactivated successfully!');
+
+                // Clear the form fields after deactivation
+                document.getElementById('name').value = '';
+                document.getElementById('customerID').value = '';
+                document.getElementById('cardNumber').value = '';
+                document.getElementById('expDate').value = '';
+                document.getElementById('cvv').value = '';
+                document.getElementById('pin').value = '';
+
+                // Clear the card display on the front and back
+                document.querySelector('.card-number').textContent = '';
+                document.querySelector('.card-expiry').textContent = '';
+                document.querySelector('.card-name').textContent = '';
+                document.querySelector('.card-cvv-value').textContent = '';
+            } else {
+                alert(data.message);
+            }
+        });
+
+    </script>
+</body>
+
+</html>

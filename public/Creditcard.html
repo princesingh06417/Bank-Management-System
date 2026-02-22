@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Activation</title>
+    <style>
+        /* General container styling */
+        body {
+            margin: 0;
+            background-color: #E4E9F7;
+        }
+
+        .credit-container {
+            display: flex; /* Use flexbox for layout */
+            margin-left: 5%;
+            justify-content: center; /* Center content */
+            align-items: flex-start; /* Align items at the start */
+            padding: 20px; /* Add some padding */
+        }
+
+        .credit-form-container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            width: 50%;
+            /* Adjusted width */
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            font-family: 'Arial', sans-serif;
+            border: 1px solid #e0e0e0;
+        }
+
+        .credit-form-container h2 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .credit-form-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .credit-form-row label {
+            font-size: 16px;
+            font-weight: 600;
+            width: 30%;
+            color: #333;
+        }
+
+        .credit-form-row input {
+            width: 65%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            background-color: #f7f7f7;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        button.credit-btn-find
+         {
+            background-color: #000;
+            color: #fff;
+            font-size: 16px;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            
+            cursor: pointer;
+            width: 150px;
+            margin: 5px 0;
+            margin-left: 80%;
+        }
+        .credit-btn-activate{
+            background-color: #000;
+            color: #fff;
+            font-size: 16px;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 150px;
+            margin: 5px 0;
+        }
+        .credit-btn-reset{
+            background-color: #000;
+            color: #fff;
+            font-size: 16px;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 150px;
+            margin: 5px 0;
+        }
+        .credit-btn-back{
+            background-color: #000;
+            color: #fff;
+            font-size: 16px;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 150px;
+            margin: 5px 0;
+        }   
+        .credit-btn-deactivate{
+            background-color: #000;
+            color: #fff;
+            font-size: 16px;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 150px;
+            margin: 5px 0;
+        }
+        button:hover {
+            background-color: #333;
+        }
+
+        .credit-buttons-row {
+            display: flex;
+            justify-content: space-between; /* Align buttons to the sides */
+            margin-top: 20px;
+            gap: 30px;
+           
+        }
+
+        /* Card container styling */
+        .credit-card-container {
+            margin-left: 20px;
+            width: 70%; /* Ensured right-side space */
+        }
+
+        /* Update card container size for larger view */
+        .credit-card {
+            width: 600px;
+            height: 400px;
+            position: relative;
+            perspective: 1000px;
+            margin: 0;
+            padding: 0;
+            border-radius: 16px;
+        }
+
+        /* Inner card styling */
+        .credit-card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            border-radius: 16px;
+        }
+
+        .credit-front,
+        .credit-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .credit-front {
+            transform: rotateY(0deg);
+        }
+
+        .credit-back {
+            transform: rotateY(180deg);
+        }
+
+        .credit-card.flip .credit-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        /* Card details */
+        .credit-card-details {
+            position: absolute;
+            bottom: 19%;
+            left: 17%;
+            color: #fff;
+        }
+
+       
+
+        .credit-card-expiry,
+        .credit-card-name {
+            
+            display: block;
+            margin-top: 5px;
+        }
+        /* Card details on the front */
+        .credit-card-number {
+            display: block;
+    font-size: 20px;
+    margin-bottom: 20px;
+    letter-spacing: 12px;
+    font-weight: bold;
+    
+}
+
+/* Style for card name */
+.credit-card-name {
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: -20px;
+    
+}
+
+/* Style for expiry date */
+.credit-card-expiry {
+    margin-top: 40px;
+    font-size: 14px;
+    
+    
+}
+
+/* CVV on the back */
+.credit-card-cvv-value {
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    right: 12%;
+    transform: translateY(-50%);
+}
+
+
+
+       
+    </style>
+</head>
+
+<body>
+
+    <div class="credit-container">
+        <!-- Left: Form Section -->
+        <div class="credit-form-container">
+            <h2>Credit Card Activation</h2>
+            <form id="creditActivationForm">
+                <div class="credit-form-row">
+                    <label for="creditAccountNo">Account No:</label>
+                    <input type="text" id="creditAccountNo" name="creditAccountNo" placeholder="Enter Account Number" required />
+                </div>
+
+                <div class="credit-form-row">
+                    <button type="button" class="credit-btn-find">Find</button>
+                </div>
+
+                <div class="credit-form-row">
+                    <label for="creditName">Name:</label>
+                    <input type="text" id="creditName" name="creditName" readonly />
+                </div>
+
+                <div class="credit-form-row">
+                    <label for="creditCustomerID">Customer ID:</label>
+                    <input type="text" id="creditCustomerID" name="creditCustomerID" readonly />
+                </div>
+
+                <div class="credit-form-row">
+                    <label for="creditCardNumber">Credit Card Number:</label>
+                    <input type="text" id="creditCardNumber" name="creditCardNumber" placeholder="Credit Card Number" required readonly />
+                </div>
+
+                <div class="credit-form-row">
+                    <label for="creditExpDate">Expiry Date:</label>
+                    <input type="text" id="creditExpDate" name="creditExpDate" placeholder="MM/YY" required readonly />
+                </div>
+
+                <div class="credit-form-row">
+                    <label for="creditCVV">CVV:</label>
+                    <input type="text" id="creditCVV" name="creditCVV" readonly />
+                </div>
+
+                <div class="credit-form-row">
+                    <label for="creditPin">Pin:</label>
+                    <input type="text" id="creditPin" name="creditPin" readonly />
+                </div>
+
+                <div class="credit-form-row">
+                    <label for="creditLimit">Credit Limit:</label>
+                    <input type="text" id="creditLimit" name="creditLimit" placeholder="Enter Credit Limit" readonly />
+                </div>
+                
+                <div class="credit-form-row">
+                    <label for="creditBillingCycle">Billing Cycle:</label>
+                    <input type="text" id="creditBillingCycle" name="creditBillingCycle" placeholder="Enter Billing Cycle (e.g. 1st to 30th)" readonly />
+                </div>
+                
+                <div class="credit-form-row">
+                    <label for="creditInterestRate">Interest Rate:</label>
+                    <input type="text" id="creditInterestRate" name="creditInterestRate" placeholder="Enter Interest Rate (%)" readonly />
+                </div>
+                
+
+                <div class="credit-buttons-row">
+                    <button type="submit" id="creditBackButton" class="credit-btn-back">Back</button>
+                    <button type="reset" class="credit-btn-reset">Reset</button>
+                    <button type="button" class="credit-btn-activate">Generate</button>
+                    <button type="button" class="credit-btn-deactivate">Deactivate</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Right: Credit Card Section -->
+        <div class="credit-card-container">
+            <div class="credit-card" id="creditCard">
+                <div class="credit-card-inner">
+                    <!-- Front of the Credit Card -->
+                    <div class="credit-front">
+                        <img id="creditImage1" src="Images/background-replacer-result-transformed.png" alt="Front of Credit Card" />
+                        <div class="credit-card-details">
+                            <span class="credit-card-number"></span>
+                            <span class="credit-card-name"></span>
+                            <span class="credit-card-expiry"></span>
+                        </div>
+                    </div>
+
+                    <!-- Back of the Credit Card -->
+                    <div class="credit-back">
+                        <img id="creditImage2" src="Images/background-replacer-result_(1)-transformed.png" alt="Back of Credit Card" />
+                        <div class="credit-card-cvv">
+                            <span class="credit-card-cvv-value"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Card flipping logic
+        document.getElementById('creditCard').addEventListener('click', function () {
+            this.classList.toggle('flip');
+        });
+        document.getElementById('creditBackButton').addEventListener('click', function() {
+        window.history.back(); // Go back to the previous page
+    });
+    document.querySelector('.credit-btn-find').addEventListener('click', async function () {
+    const accountNo = document.getElementById('creditAccountNo').value;
+
+    if (!accountNo) {
+        alert('Please enter an account number');
+        return;
+    }
+
+    // Fetch account or credit card details from backend using account number
+    const response = await fetch(`/find-credit-account/${accountNo}`);
+    const data = await response.json();
+
+    if (data.success) {
+        if (data.creditCard) {
+            // Populate fields with card data
+            document.getElementById('creditName').value = data.creditCard.name;
+            document.getElementById('creditCustomerID').value = data.creditCard.customerID;
+            document.getElementById('creditCardNumber').value = data.creditCard.cardNumber;
+            document.getElementById('creditExpDate').value = data.creditCard.expiryDate;
+            document.getElementById('creditCVV').value = data.creditCard.cvv;
+            document.getElementById('creditPin').value = data.creditCard.pin;
+            document.getElementById('creditLimit').value = data.creditCard.creditLimit;
+            document.getElementById('creditBillingCycle').value = data.creditCard.billingCycle;
+            document.getElementById('creditInterestRate').value = data.creditCard.interestRate;
+
+            // Display the card number, expiry date, and name on the front of the card
+            document.querySelector('.credit-card-number').textContent = formatCardNumber(data.creditCard.cardNumber);
+            document.querySelector('.credit-card-expiry').textContent = data.creditCard.expiryDate;
+            document.querySelector('.credit-card-name').textContent = data.creditCard.name;
+
+            // Display the CVV on the back of the card
+            document.querySelector('.credit-card-cvv-value').textContent = data.creditCard.cvv;
+
+        } else {
+            // Handle new card generation case
+            document.getElementById('creditName').value = data.account.name;
+            document.getElementById('creditCustomerID').value = data.account.customerID;
+
+            // Populate generated card details
+            document.getElementById('creditCardNumber').value = data.cardDetails.cardNumber;
+            document.getElementById('creditExpDate').value = data.cardDetails.expiryDate;
+            document.getElementById('creditCVV').value = data.cardDetails.cvv;
+            document.getElementById('creditPin').value = data.cardDetails.pin;
+            document.getElementById('creditLimit').value = data.creditLimit;
+            document.getElementById('creditBillingCycle').value = data.billingCycle;
+            document.getElementById('creditInterestRate').value = data.interestRate;
+
+            // Display the generated card number, expiry date, and name on the card front
+            document.querySelector('.credit-card-number').textContent = formatCardNumber(data.cardDetails.cardNumber);
+            document.querySelector('.credit-card-expiry').textContent = data.cardDetails.expiryDate;
+            document.querySelector('.credit-card-name').textContent = data.account.name;
+
+            // Display the generated CVV on the back of the card
+            document.querySelector('.credit-card-cvv-value').textContent = data.cardDetails.cvv;
+        }
+    } else {
+        alert('Account not found');
+    }
+});
+
+// Utility function to format the card number in groups of 4 digits
+function formatCardNumber(cardNumber) {
+    return cardNumber.replace(/(\d{4})(?=\d)/g, '$1 ');  // Adds space after every 4 digits
+}
+document.querySelector('.credit-btn-activate').addEventListener('click', async function () {
+    const accountNumber = document.getElementById('creditAccountNo').value;
+    const name = document.getElementById('creditName').value;
+    const customerID = document.getElementById('creditCustomerID').value;
+    const cardNumber = document.getElementById('creditCardNumber').value;
+    const expDate = document.getElementById('creditExpDate').value;
+    const cvv = document.getElementById('creditCVV').value;
+    const pin = document.getElementById('creditPin').value;
+
+    const response = await fetch('/activate-credit-card', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ accountNumber, name, customerID, cardNumber, expiryDate: expDate, cvv, pin })
+    });
+
+    const data = await response.json();
+    if (data.success) {
+        alert('Credit card activated successfully!');
+    } else {
+        alert(data.message);
+    }
+});
+document.querySelector('.credit-btn-deactivate').addEventListener('click', async function () {
+    const accountNo = document.getElementById('creditAccountNo').value;
+
+    if (!accountNo) {
+        alert('Please enter an account number');
+        return;
+    }
+
+    const confirmDeactivation = confirm('Are you sure you want to deactivate this credit card?');
+    if (!confirmDeactivation) return;
+
+    const response = await fetch(`/deactivate-credit-card/${accountNo}`, {
+        method: 'DELETE'
+    });
+
+    const data = await response.json();
+    if (data.success) {
+        alert('Credit card deactivated and deleted successfully!');
+        // Clear the form fields after deactivation
+        document.getElementById('creditActivationForm').reset();
+    } else {
+        alert(data.message);
+    }
+});
+
+    </script>
+
+</body>
+
+</html>

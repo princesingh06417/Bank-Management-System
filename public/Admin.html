@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skyward Bank Management</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: "Inter", sans-serif;
+            background-color: #E4E9F7;
+            white-space: nowrap;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            background-color: #11101D;
+            color: #fff;
+            width: 260px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar header {
+            text-align: left;
+            font-size: 16px;
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .container .sidebar h2 {
+            margin-left: 10px;
+        }
+
+        .nav-list li {
+            padding: 10px 20px;
+            display: flex;
+            height: 38px;
+            align-items: center;
+        }
+
+        .nav-list li a {
+            color: #fff;
+            font-weight: bold;
+            height: 80%;
+            width: 80%;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+
+            border-radius: 10px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-list li a:hover {
+            background-color: #fff;
+            color: #11101D;
+            transition: 0.3s;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+
+        .nav-list li a i {
+            font-size: 20px;
+        }
+
+        input {
+            width: calc(100% - 160px);
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+
+        }
+
+        .sidebar-footer {
+            padding: 10px;
+            text-align: center;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .ConstoContainer2 h1 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .table-custom2 {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            table-layout: auto;
+            margin-left: -7px;
+        }
+
+        /* Table Styling */
+        .table-custom {
+            width: 1220px;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            table-layout: auto;
+            margin-left: 7px;
+            scroll-behavior: smooth;
+        }
+
+        .table-custom th,
+        .table-custom td {
+            border: 1px solid #ddd;
+            /* Light border */
+            padding: 12px 15px;
+            /* Spacing for better readability */
+            text-align: left;
+
+            font-size: 14px;
+        }
+
+
+        .table-custom th {
+            background-color: #f8f9fa;
+            /* Light gray for the header */
+            font-weight: bold;
+            color: #333;
+            border-bottom: 2px solid #ccc;
+        }
+
+        .table-custom tr:nth-child(even) {
+            background-color: #f9f9f9;
+            /* Zebra striping for better readability */
+        }
+
+        .table-custom tr:hover {
+            background-color: #f1f1f1;
+            /* Hover effect */
+        }
+
+        /* Rounded corners */
+        .table-custom {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .table-custom td {
+            color: #555;
+        }
+
+        .table-custom th,
+        .table-custom td {
+            border-bottom: 1px solid #ddd;
+            /* Horizontal lines */
+        }
+
+        .table-custom th {
+            padding: 14px;
+            background-color: #f2f2f2;
+        }
+
+        .table-custom tr:last-child td {
+            border-bottom: none;
+            /* Remove bottom border on last row */
+        }
+
+        .table-custom2 th,
+        .table-custom2 td {
+            border: 1px solid #ddd;
+            /* Light border */
+            padding: 12px 15px;
+            /* Spacing for better readability */
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .table-custom2 th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #333;
+            border-bottom: 2px solid #ccc;
+        }
+
+
+
+        .table-custom2 tr:hover {
+            background-color: whitesmoke;
+        }
+
+        .table-custom2 {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .table-custom2 td {
+            color: #555;
+        }
+
+        .table-custom2 th,
+        .table-custom2 td {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table-custom2 th {
+            padding: 14px;
+            background-color: #f2f2f2;
+        }
+
+        .table-custom2 tr:last-child td {
+            border-bottom: none;
+        }
+
+
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+
+
+        }
+
+        /* Form Container */
+        .ConstoContainer {
+            width: 600px;
+            margin: auto;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
+            color: #333;
+
+        }
+
+        /* Heading Style */
+        .ConstoContainer h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Input Field Style */
+        .ConstoContainer .form-control {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        /* Label Style */
+        .ConstoContainer label {
+            font-weight: bold;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+
+
+        /* Email Error Style */
+        .ConstoContainer .error_email {
+            font-size: 12px;
+            color: red;
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* Form Footer */
+
+        button {
+            background-color: #11101D;
+            color: #ffffff;
+            border: none;
+            height: 38.4px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+            width: 48%;
+
+        }
+
+        button:hover {
+            background-color: #201e39;
+        }
+
+        .resetbtn {
+            right: 5px;
+        }
+
+        .table-custom {
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+
+            border-collapse: collapse;
+        }
+        .modal-footer{
+    display: flex;
+    justify-content: space-between; /* Space the buttons apart */
+    align-items: center;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <header>
+                <h2 style="white-space: normal;">Skyward Bank Management</h2>
+            </header>
+            <ul class="nav-list">
+                <li><a href="#" onclick="openTab(event, 'customerRecord')"><i class='bx bx-user'></i> Customer
+                        Record</a></li>
+                <li><a href="#" onclick="openTab(event, 'adminCreation')"><i class='bx bx-user-plus'></i> Admin
+                        Creation</a></li>
+                <li><a href="#" onclick="openTab(event, 'allAdmin')"><i class='bx bx-group'></i> All Admin</a></li>
+                <li><a href="#" onclick="logout()"><i class='bx bx-log-out'></i> Log Out</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main content -->
+        <section class="main-content">
+            <div class="content">
+                <!-- Customer Record Section -->
+                <div id="customerRecord" class="tab-content" style="display: block;">
+                    <div class="ConstoContainer2">
+                        <h1>SKYWARD BANK: CUSTOMERS RECORDS</h1>
+                        <div class="table-container">
+                            <table class="table-custom">
+                                <thead>
+                                    <tr>
+                                        <th>Account No</th>
+                                        <th>Customer Id</th>
+                                        <th>Branch Name</th>
+                                        <th>Name</th>
+                                        <th>Account Type</th>
+                                        <th>Date of Birth</th>
+                                        <th>Gender</th>
+                                        <th>Aadhar No</th>
+                                        <th>Pan No</th>
+                                        <th>Mobile No</th>
+                                        <th>Address</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ConttransactionTableBody">
+                                    <!-- Customer records will be dynamically inserted here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Creation Section -->
+                <div id="adminCreation" class="tab-content" style="display: none;">
+                    <div class="ConstoContainer">
+                        <h1>Admin Creation Section</h1>
+                        <form>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="addAdminName">Name</label>
+                                    <input type="text" id="addAdminName" name="addAdminName" class="form-control"
+                                        placeholder="Enter Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="addAdminUsername">Username</label>
+                                    <input type="text" id="addAdminUsername" name="addAdminUsername"
+                                        class="form-control" placeholder="Enter Username">
+                                </div>
+                                <div class="form-group">
+                                    <label for="employeeRole">Select Employee Role</label>
+                                    <select id="employeeRole" name="employeeRole" class="form-control">
+                                        <option value="" disabled selected>Select Role</option>
+                                        <option value="cashier">Cashier</option>
+                                        <option value="teller">Teller</option>
+                                        <option value="branchManager">Branch Manager</option>
+                                        <option value="loanOfficer">Loan Officer</option>
+                                        <option value="customerService">Customer Service Representative</option>
+                                        <option value="relationshipManager">Relationship Manager</option>
+                                        <option value="accountant">Accountant</option>
+                                        <option value="auditor">Auditor</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="addAdminEmail">Email</label>
+                                    <input type="email" id="addAdminEmail" name="addAdminEmail"
+                                        class="form-control checking_email" placeholder="Enter Email">
+                                    <small class="error_email" style="color: red;"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="addAdminPassword">Password</label>
+                                    <input type="password" id="addAdminPassword" name="addAdminPassword"
+                                        class="form-control" placeholder="Enter Password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="addAdminConfirmPassword">Confirm Password</label>
+                                    <input type="password" id="addAdminConfirmPassword" name="addAdminConfirmPassword"
+                                        class="form-control" placeholder="Confirm Password">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+
+                                <button type="submit" name="registerbtn" class="btn btn-primary">Save</button>
+                                <button type="reset" class="resetbtn">Reset</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <!-- All Admin Section -->
+                <div id="allAdmin" class="tab-content" style="display: none;">
+                    <div class="ConstoContainer3">
+                        <h1 style="text-align: center;text-transform: uppercase;margin-bottom: 40px;">All Admins Details
+                        </h1>
+                        <table class="table-custom2">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Username</th>
+                                    <th>Employee Role</th>
+                                    <th>Email</th>
+                                    <th>Password</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminTableBody">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- JS for Tab Switching -->
+    <script>
+        // Tab switching functionality
+        function openTab(event, tabName) {
+            // Hide all tab content
+            var i, tabcontent;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Show the selected tab
+            document.getElementById(tabName).style.display = "block";
+        }
+        // Function to fetch and display all customers
+        // Function to fetch and display all customers from CustomerRecord schema
+        // Function to fetch and display all customers
+        async function fetchAllCustomers() {
+            try {
+                const response = await fetch('/all-customer-records');
+                const data = await response.json();
+
+                if (data.success) {
+                    const customers = data.customers;
+                    let tableBody = document.getElementById('ConttransactionTableBody');
+                    tableBody.innerHTML = '';  // Clear previous data
+
+                    customers.forEach(customer => {
+                        const row = `
+                    <tr>
+                        <td>${customer.accountNumber}</td>
+                        <td>${customer.customerID}</td>
+                        <td>${customer.branch}</td>
+                        <td>${customer.name}</td>
+                        <td>${customer.accountType}</td>
+                        <td>${new Date(customer.dob).toLocaleDateString()}</td>
+                        <td>${customer.gender}</td>
+                        <td>${customer.aadhar}</td>
+                        <td>${customer.pan}</td>
+                        <td>${customer.mobile}</td>
+                        <td>${customer.address}</td>
+                    </tr>
+                `;
+                        tableBody.innerHTML += row;
+                    });
+                } else {
+                    console.error('Failed to fetch customers');
+                }
+            } catch (err) {
+                console.error('Error fetching customers:', err);
+            }
+        }
+
+        // Function to fetch and display all admins
+        async function fetchAllAdmins() {
+            try {
+                const response = await fetch('/all-admins');
+                const data = await response.json();
+
+                if (data.success) {
+                    const admins = data.employees;
+                    let tableBody = document.getElementById('adminTableBody');
+                    tableBody.innerHTML = '';  // Clear previous data
+
+                    admins.forEach(admin => {
+                        const row = `
+                    <tr>
+                        <td>${admin.name}</td>
+                        <td>${admin.username}</td>
+                        <td>${admin.role}</td>
+                        <td>${admin.email}</td>
+                        <td>********</td> <!-- Hide password for security -->
+                        <td><span style="margin-left:30px;cursor: pointer;color:red;" onclick="deleteAdmin('${admin.username}')"><i style="font-size: 28px;" class="fa-sharp fa-solid fa-circle-xmark"></i></span></td>
+                    </tr>
+                `;
+                        tableBody.innerHTML += row;
+                    });
+                } else {
+                    console.error('Failed to fetch admins');
+                }
+            } catch (err) {
+                console.error('Error fetching admins:', err);
+            }
+        }
+
+        document.querySelector('form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            // Collect form data
+            const name = document.getElementById('addAdminName').value;
+            const username = document.getElementById('addAdminUsername').value;
+            const role = document.getElementById('employeeRole').value;
+            const email = document.getElementById('addAdminEmail').value;
+            const password = document.getElementById('addAdminPassword').value;
+            const confirmPassword = document.getElementById('addAdminConfirmPassword').value;
+
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+
+            // Prepare the data object
+            const adminData = {
+                name,
+                username,
+                role,
+                email,
+                password
+            };
+
+            // Send the data to the server
+            try {
+                const response = await fetch('/create-admin', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(adminData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert('Admin created successfully!');
+                    // Optionally clear the form
+                    this.reset();
+                } else {
+                    alert(result.message || 'Failed to create admin.');
+                }
+            } catch (error) {
+                console.error('Error submitting the form:', error);
+            }
+        });
+        // Function to delete an admin
+        async function deleteAdmin(username) {
+            if (confirm('Are you sure you want to delete this admin?')) {
+                try {
+                    const response = await fetch(`/delete-admin/${username}`, {
+                        method: 'DELETE'
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        alert('Admin deleted successfully!');
+                        fetchAllAdmins(); // Refresh the admin list after deletion
+                    } else {
+                        alert('Failed to delete admin: ' + result.message);
+                    }
+                } catch (err) {
+                    console.error('Error deleting admin:', err);
+                }
+            }
+        }
+
+        // Combine both functions under one window.onload
+        window.onload = function () {
+            fetchAllCustomers(); // Fetch and display all customers
+            fetchAllAdmins();    // Fetch and display all admins
+        };
+        function logout() {
+            fetch('/admin-logout', {
+                method: 'GET',
+            })
+                .then(response => {
+                    if (response.redirected) {
+                        window.location.href = response.url;  // Redirect to login page
+                    }
+                })
+                .catch(err => console.error('Error during logout:', err));
+        }
+
+        // Function to fetch and display all admins
+    </script>
+
+</body>
+
+</html>

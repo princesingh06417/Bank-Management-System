@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Services Form</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: "Inter" sans-serif;
+            background-color: #E4E9F7;
+            color: #11101D;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 30px;
+
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            width: 700px;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            color: #11101D;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            width: 23%;
+            color: #11101D;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: calc(100% - 160px);
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        /* Specific style for the "Find" button to be on a new line */
+        #findButton {
+            width: 175px;
+            height: 36px;
+            margin-left: 80%;
+            background-color: #11101D;
+            color: #ffffff;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #findButton:hover {
+            background-color: #2a2845;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #2a2845;
+        }
+
+        .buttons button {
+            padding: 10px 20px;
+            border: none;
+            width: 220px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button{
+            background-color: #11101D;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        input[readonly] {
+            background-color: #e9e9e9;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 style="text-transform: uppercase;">Apply for Services</h2>
+        <form>
+            <div class="form-group">
+                <label for="accountNumber">Account No:</label>
+                <input type="text" id="accountNumber" name="accountNumber">
+            </div>
+
+            <div class="form-group">
+                <button type="button" id="findButton">Find</button>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="customerID">Customer ID:</label>
+                <input type="text" id="customerID" name="customerID" readonly>
+            </div>
+
+            <h3 style="text-transform: uppercase;text-decoration: underline;">Services</h3>
+
+            <!-- Cheque Book Facility -->
+            <div class="form-group">
+                <label for="chequeBook">Cheque Book Facility:</label>
+                <select id="chequeBook" name="chequeBook">
+                    <option value="">Select Service</option>
+                    <option value="Activated">Activated</option>
+                    <option value="Deactivated">Deactivated</option>
+                </select>
+            </div>
+
+            <!-- Email Statement -->
+            <div class="form-group">
+                <label for="emailStatement">Email Statement:</label>
+                <select id="emailStatement" name="emailStatement">
+                    <option value="">Select Service</option>
+                    <option value="Activated">Activated</option>
+                    <option value="Deactivated">Deactivated</option>
+                </select>
+            </div>
+
+            <!-- SMS Alert -->
+            <div class="form-group">
+                <label for="smsAlert">SMS Alert:</label>
+                <select id="smsAlert" name="smsAlert">
+                    <option value="">Select Service</option>
+                    <option value="Activated">Activated</option>
+                    <option value="Deactivated">Deactivated</option>
+                </select>
+            </div>
+
+            <!-- Internet Banking -->
+            <div class="form-group">
+                <label for="internetBanking">Internet Banking:</label>
+                <select id="internetBanking" name="internetBanking">
+                    <option value="">Select Service</option>
+                    <option value="Activated">Activated</option>
+                    <option value="Deactivated">Deactivated</option>
+                </select>
+            </div>
+
+            <!-- Safe Deposit Box -->
+            <div class="form-group">
+                <label for="safeDeposit">Safe Deposit Box:</label>
+                <select id="safeDeposit" name="safeDeposit">
+                    <option value="">Select Service</option>
+                    <option value="Activated">Activated</option>
+                    <option value="Deactivated">Deactivated</option>
+                </select>
+            </div>
+
+
+            <div class="buttons">
+                <button type="button" class="back" id="backButton">Back</button>
+                <button type="reset" class="reset">Reset</button>
+                <button type="submit" class="update">Update</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        
+        document.getElementById('backButton').addEventListener('click', function() {
+        window.history.back(); // Go back to the previous page
+    });
+        document.getElementById('findButton').addEventListener('click', async function () {
+            const accountNumber = document.getElementById('accountNumber').value;
+
+            if (!accountNumber) {
+                alert('Please enter an account number.');
+                return;
+            }
+
+            try {
+                const response = await fetch(`/account-details/${accountNumber}`);
+                const data = await response.json();
+
+                if (data.success) {
+                    document.getElementById('name').value = data.name;
+                    document.getElementById('customerID').value = data.customerID;
+                } else {
+                    alert('Account not found. You can create services for this account.');
+                    // Clear the name and customerID fields
+                    document.getElementById('name').value = '';
+                    document.getElementById('customerID').value = '';
+                }
+            } catch (error) {
+                console.error('Error fetching account details:', error);
+                alert('Error fetching account details.');
+            }
+        });
+
+        // Handle the Update button
+        document.querySelector('.update').addEventListener('click', async function(event) {
+    event.preventDefault();  // Prevent default form submission
+
+    // Collect form data
+    const accountNumber = document.getElementById('accountNumber').value.trim();
+    const name = document.getElementById('name').value.trim();
+    const chequeBook = document.getElementById('chequeBook').value || 'Deactivated';  // Default to 'Deactivated' if empty
+    const emailStatement = document.getElementById('emailStatement').value || 'Deactivated';
+    const smsAlert = document.getElementById('smsAlert').value || 'Deactivated';
+    const internetBanking = document.getElementById('internetBanking').value || 'Deactivated';
+    const safeDeposit = document.getElementById('safeDeposit').value || 'Deactivated';
+
+    if (!accountNumber || !name) {
+        alert('Account Number and Name are required.');
+        return;
+    }
+
+    const payload = {
+        accountNumber,
+        name,
+        chequeBook,
+        emailStatement,
+        smsAlert,
+        internetBanking,
+        safeDeposit
+    };
+
+    try {
+        const response = await fetch('/update-services', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await response.json();
+        if (data.success) {
+            alert(data.message);
+        } else {
+            alert('Failed to update services: ' + data.message);
+        }
+    } catch (error) {
+        console.error('Error updating services:', error);
+        alert('Error updating services.');
+    }
+});
+
+
+
+    </script>
+</body>
+
+</html>

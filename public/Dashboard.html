@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKYWARD Bank</title>
+    <!-- Boxicons Icon Link -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="icon" type="image/x-icon" href="logo.png">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Disable caching -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <header>
+                <h2>Skyward Bank Management</h2>
+            </header>
+            <ul class="nav-list">
+                <li><a href="#" onclick="openTab(event, 'dashboard')"><i class='bx bx-grid-alt'></i> Dashboard</a></li>
+                <li><a href="#" onclick="openTab(event, 'createAccount')"><i class='bx bx-user-plus'></i> Create
+                        Account</a></li>
+                <li><a href="#" onclick="openTab(event, 'deposit')"><i class='bx bx-wallet'></i> Deposit</a></li>
+                <li><a href="#" onclick="openTab(event, 'withdraw')"><i class='bx bx-money-withdraw'></i> Withdraw</a>
+                </li>
+                <li><a href="#" onclick="openTab(event, 'update')"><i class='bx bx-edit'></i> Update</a></li>
+                <li><a href="#" onclick="openTab(event, 'viewBalance')"><i class='bx bx-show'></i> View Balance</a></li>
+                <li><a href="#" onclick="openTab(event, 'transferMoney')"><i class='bx bx-transfer-alt'></i> Transfer
+                        Money</a></li>
+                <li><a href="#" onclick="openTab(event, 'allCustomers')"><i class='bx bx-group'></i> All Customers</a>
+                </li>
+                <li><a href="#" onclick="logout()"><i class='bx bx-log-out'></i> Log Out</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <p id="logocont"><img src="Images/logo.png" alt="Logo" id="banklogo"> Skyward Bank</p>
+            </div>
+        </nav>
+
+        <!-- Main content -->
+        <section class="main-content">
+            <div class="content">
+                <!-- Each tab content -->
+                <div id="dashboard" class="tab-content">
+                    <div class="loggo">
+                        <img src="Images/logo2.png" alt="Logo">
+                        <h1>Welcome to Skyward Bank</h1>
+                    </div>
+                    <div class="service">
+                        <div class="container1">
+                            <h1>DEBIT CARD</h1>
+                            <hr style="margin:0 25px; border: 2px solid #000;margin-top: -20px;">
+                            <ul>
+                                <li>24/7 Access</li>
+                                <li>Secure Transactions</li>
+                                <li>Worldwide Acceptance</li>
+                                <li> Convenience</li>
+                                <li>Must be at least 18 years old.</li>
+                            </ul>
+                            <a href="check.html">Apply Here</a>
+                        </div>
+                        <div class="container2">
+
+                            <h1>CREDIT CARD</h1>
+                            <hr style="margin:0 25px; border: 2px solid #000;margin-top: -20px;">
+                            <ul>
+                                <li>Flexible Credit Limit</li>
+                                <li>Competitive Interest Rates</li>
+                                <li>Reward Points Program</li>
+                                <li>Zero Fraud Liability</li>
+                                <li>Grace Period on Purchases</li>
+                            </ul>
+                            <a href="Creditcard.html">Apply Here</a>
+
+                        </div>
+                        <div class="container3">
+                            <h1>SERVICES</h1>
+                            <hr style="margin:0 25px; border: 2px solid #000;margin-top: -20px;">
+                            <ul>
+                                <li>Cheque Book Payment Facility</li>
+                                <li>Bank Statements via Email</li>
+                                <li>SMS Alerts</li>
+                                <li>Internet Banking</li>
+                                <li>Safe Deposit Boxes</li>
+                            </ul>
+                            <a href="Services.html">Apply Here</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="createAccount" class="tab-content" style="display: none;">
+                    <div class="form-container">
+                        <h1>Bank Account Opening Form</h1>
+                        <form onsubmit="return validateForm()">
+                            <!-- Branch Name -->
+                            <label for="branch">Branch Name:</label>
+                            <select id="branch" name="branch" class="searchable-select" required>
+                                <option value="" disabled selected>Select a branch</option>
+                                <option value="Ahmedabad">Ahmedabad</option>
+                                <option value="Bangalore City">Bangalore City</option>
+                                <option value="Bhopal">Bhopal</option>
+                                <option value="Chennai Mount Road">Chennai Mount Road</option>
+                                <option value="Delhi Connaught Place">Delhi Connaught Place</option>
+                                <option value="Hyderabad">Hyderabad</option>
+                                <option value="Kolkata">Kolkata</option>
+                                <option value="Lucknow">Lucknow</option>
+                                <option value="Mumbai Fort">Mumbai Fort</option>
+                                <option value="Pune Camp">Pune Camp</option>
+                                <option value="Jaipur">Jaipur</option>
+                                <option value="Chandigarh Sector 17">Chandigarh Sector 17</option>
+                                <option value="Surat">Surat</option>
+                                <option value="Patna">Patna</option>
+                                <option value="Guwahati">Guwahati</option>
+                                <option value="Ranchi">Ranchi</option>
+                                <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+                                <option value="Nagpur">Nagpur</option>
+                                <option value="Ludhiana">Ludhiana</option>
+                                <option value="Noida Sector 18">Noida Sector 18</option>
+                                <option value="Indore">Indore</option>
+                                <option value="Coimbatore">Coimbatore</option>
+                                <option value="Visakhapatnam">Visakhapatnam</option>
+                                <option value="Vadodara">Vadodara</option>
+                                <option value="Mysore">Mysore</option>
+                                <option value="Jalandhar">Jalandhar</option>
+                                <option value="Rajkot">Rajkot</option>
+                                <option value="Nashik">Nashik</option>
+                                <option value="Jabalpur">Jabalpur</option>
+                                <option value="Agra">Agra</option>
+                                <option value="Varanasi">Varanasi</option>
+                                <option value="Faridabad">Faridabad</option>
+                                <option value="Ghaziabad">Ghaziabad</option>
+                                <option value="Madurai">Madurai</option>
+                                <option value="Udaipur">Udaipur</option>
+                                <option value="Dehradun">Dehradun</option>
+                                <option value="Amritsar">Amritsar</option>
+                                <option value="Mangalore">Mangalore</option>
+                                <option value="Bhubaneswar">Bhubaneswar</option>
+                                <option value="Kanpur">Kanpur</option>
+                                <option value="Allahabad">Allahabad</option>
+                                <option value="Guntur">Guntur</option>
+                                <option value="Vijayawada">Vijayawada</option>
+                                <option value="Aurangabad">Aurangabad</option>
+                                <option value="Siliguri">Siliguri</option>
+                                <option value="Jamshedpur">Jamshedpur</option>
+                                <option value="Raipur">Raipur</option>
+                                <option value="Kolhapur">Kolhapur</option>
+                                <option value="Meerut">Meerut</option>
+                                <option value="Trichy">Trichy</option>
+                                <!-- Thane District Branches -->
+                                <option value="Thane">Thane</option>
+                                <option value="Dombivli">Dombivli</option>
+                                <option value="Kalyan">Kalyan</option>
+                                <option value="Vasai">Vasai</option>
+                                <option value="Bhiwandi">Bhiwandi</option>
+                                <option value="Mira Road">Mira Road</option>
+                                <option value="Naupada Thane">Naupada Thane</option>
+                                <option value="Mulund West">Mulund West</option>
+                                <option value="Ulhasnagar">Ulhasnagar</option>
+                                <option value="Kalwa">Kalwa</option>
+                            </select><br>
+
+                            <!-- Auto-generated Customer ID (non-editable) -->
+                            <label for="customer-id">Customer ID:</label>
+                            <input type="text" id="customer-id" name="customer-id" readonly><br>
+
+                            <!-- Auto-generated Account Number (non-editable) -->
+                            <label for="account-number">Account Number:</label>
+                            <input type="text" id="account-number" name="account-number" readonly><br>
+
+                            <!-- Account Type -->
+                            <label>Account Type:</label>
+                            <div class="radio-group">
+                                <input type="radio" id="savings" name="account-type" value="savings" required>
+                                <label for="savings">Savings</label>
+                                <input type="radio" id="current" name="account-type" value="current">
+                                <label for="current">Current</label>
+                            </div>
+
+                            <!-- Name -->
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" required pattern="[A-Za-z\s]+"
+                                title="Name should only contain letters and spaces"><br>
+
+                            <!-- Date of Birth -->
+                            <label for="dob">Date of Birth:</label>
+                            <input type="date" id="dob" name="dob" required><br>
+
+                            <!-- Gender -->
+                            <label>Gender:</label>
+                            <div class="radio-group">
+                                <input type="radio" id="male" name="gender" value="male" required>
+                                <label for="male">Male</label>
+                                <input type="radio" id="female" name="gender" value="female">
+                                <label for="female">Female</label>
+                                <input type="radio" id="other" name="gender" value="Other">
+                                <label for="other">Other</label>
+                            </div>
+
+                            <!-- Marital Status -->
+                            <label>Marital Status:</label>
+                            <div class="radio-group">
+                                <input type="radio" id="married" name="marital-status" value="married" required>
+                                <label for="married">Married</label>
+                                <input type="radio" id="unmarried" name="marital-status" value="unmarried">
+                                <label for="unmarried">Unmarried</label>
+                                <input type="radio" id="divorced" name="marital-status" value="divorced">
+                                <label for="divorced">Divorced</label>
+                                <input type="radio" id="single" name="marital-status" value="single">
+                                <label for="single">Single</label>
+                            </div>
+
+                            <!-- Guardian Name -->
+                            <label for="guardian">Name of Guardian:</label>
+                            <input type="text" id="guardian" name="guardian" required pattern="[A-Za-z\s]+"
+                                title="Guardian name should only contain letters and spaces"><br>
+
+                            <!-- Nationality -->
+                            <label for="nationality">Nationality:</label>
+<input type="text" id="nationality" name="nationality" required>
+
+
+                            <!-- Occupation -->
+                            <label for="occupation">Occupation:</label>
+                            <input type="text" id="occupation" name="occupation" required pattern="[A-Za-z\s]+"
+                                title="Occupation should only contain letters and spaces"><br>
+
+                            <!-- Annual Income -->
+                            <label for="income">Annual Income:</label>
+                            <select id="income" name="income" required>
+                                <option value="0-300000">Upto ₹ 3,00,000</option>
+                                <option value="300000-600000">₹ 3,00,000 - ₹ 6,00,000</option>
+                                <option value="600000-900000">₹ 6,00,000 - ₹ 9,00,000</option>
+                                <option value="900000-1200000">₹ 9,00,000 - ₹ 12,00,000</option>
+                                <option value="1200000-1500000">₹ 12,00,000 - ₹ 15,00,000</option>
+                                <option value="above-1500000">Above ₹ 15,00,000</option>
+                            </select><br>
+
+                            <!-- Category -->
+                            <label>Category:</label>
+                            <div class="radio-group">
+                                <input type="radio" id="general" name="category" value="general" required>
+                                <label for="general">General</label>
+                                <input type="radio" id="obc" name="category" value="obc">
+                                <label for="obc">OBC</label>
+                                <input type="radio" id="sc" name="category" value="sc">
+                                <label for="sc">SC</label>
+                                <input type="radio" id="st" name="category" value="st">
+                                <label for="st">ST</label>
+                            </div>
+
+                            <!-- Religion -->
+                            <label>Religion:</label>
+                            <div class="radio-group">
+                                <input type="radio" id="hindu" name="religion" value="hindu" required>
+                                <label for="hindu">Hindu</label>
+                                <input type="radio" id="muslim" name="religion" value="muslim">
+                                <label for="muslim">Muslim</label>
+                                <input type="radio" id="christian" name="religion" value="christian">
+                                <label for="christian">Christian</label>
+                                <input type="radio" id="other-religion" name="religion" value="other">
+                                <label for="other-religion">Other</label>
+                            </div>
+
+                            <!-- PAN Number -->
+                            <label for="pan">PAN Number:</label>
+                            <input type="text" id="pan" name="pan" required pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}"
+                                title="PAN should be alphanumeric and in the format ABCDE1234F"><br>
+
+                            <!-- Aadhar Number -->
+                            <label for="aadhar">Aadhar Number:</label>
+                            <input type="text" id="aadhar" name="aadhar" required pattern="[0-9]{12}"
+                                title="Aadhar should be exactly 12 digits"><br>
+
+                            <!-- Mobile Number -->
+                            <label for="mobile">Mobile Number:</label>
+                            <input type="tel" id="mobile" name="mobile" required pattern="[0-9]{10}"
+                                title="Mobile number should be exactly 10 digits"><br>
+
+                            <!-- Email ID -->
+                            <label for="email">Email ID:</label>
+                            <input type="email" id="email" name="email" required><br>
+
+                            <!-- Address -->
+                            <label for="address">Address:</label>
+                            <textarea id="address" name="address" rows="4" required></textarea><br>
+
+                            <!-- Submit Button -->
+                            <button type="submit">Submit</button>
+                            <button type="reset" onclick="createAccountresetForm()">Reset</button>
+                        </form>
+
+                    </div>
+                </div>
+                <div id="deposit" class="tab-content" style="display: none;">
+                    <div class="deposit-form-wrapper">
+                        <h2>Skyward Bank: Deposit Money</h2>
+                        <form id="depositForm">
+                            <div class="form-group">
+                                <label for="accountNo">Account No.:</label>
+                                <input type="text" id="accountNo" name="accountNo" required>
+                            </div>
+
+                            <div class="button-group">
+                                <button type="button" class="find-btn">Find</button>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name-user">Name:</label>
+                                <input type="text" id="name-user" name="name" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="customerID">Customer ID:</label>
+                                <input type="text" id="customerID" name="customerID" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mobileNo">Mobile No.:</label>
+                                <input type="text" id="mobileNo" name="mobileNo" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="date">Date:</label>
+                                <input type="date" id="date" name="date" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="depositAmount">Amount for Deposit:</label>
+                                <input type="text" id="depositAmount" name="depositAmount" required>
+                            </div>
+
+
+                            <div class="button-group">
+                                
+                                <button type="button" class="reset-btn" onclick="depositFormresetForm()">Reset</button>
+                                <button type="submit" class="deposit-btn">Deposit</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <div id="withdraw" class="tab-content" style="display: none;">
+                    <div class="withdraw-container">
+                        <h1>Skyward Bank: Withdraw Money</h1>
+
+                        <div class="withdrawalFormBox">
+                            <form id="withdrawalForm">
+                                <!-- Account Number and Find Button -->
+                                <label class="withdrawalLabel" for="withdrawAccountNumber">Account No:</label>
+                                <input class="withdrawInput" type="text" id="withdrawAccountNumber"
+                                    name="withdrawAccountNumber" required>
+                                <button type="button" class="btnFindWithdraw">Find</button><br>
+
+                                <!-- Name -->
+                                <label class="withdrawalLabel" for="withdrawName">Name:</label>
+                                <input class="withdrawInput" type="text" id="withdrawName" name="withdrawName"
+                                    readonly><br>
+
+                                <!-- Customer ID -->
+                                <label class="withdrawalLabel" for="withdrawCustomerId">Customer ID:</label>
+                                <input class="withdrawInput" type="text" id="withdrawCustomerId"
+                                    name="withdrawCustomerId" readonly><br>
+
+                                <!-- Mobile Number -->
+                                <label class="withdrawalLabel" for="withdrawMobileNumber">Mobile No:</label>
+                                <input class="withdrawInput" type="tel" id="withdrawMobileNumber"
+                                    name="withdrawMobileNumber" readonly><br>
+
+                                <!-- Date -->
+                                <label class="withdrawalLabel" for="withdrawDate">Date:</label>
+                                <input type="date" id="withdrawDate" name="withdrawDate" readonly>
+
+                                <!-- Withdrawal Amount -->
+                                <label class="withdrawalLabel" for="withdrawAmount">Amount:</label>
+                                <input class="withdrawInput" type="text" id="withdrawAmount" name="withdrawAmount"
+                                    required><br>
+
+                                <!-- Withdraw Button -->
+                                <div class="button-group">
+                                    <button type="submit" class="btnSubmitWithdraw">Withdraw</button><br>
+                                    <button type="button" class="reset-btn" onclick="WithdrawresetForm()">Reset</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="update" class="tab-content" style="display: none;">
+                    <div class="updatecontainer">
+                        <h1>Skyward Bank: Update KYC Information</h1>
+                        <form class="kyc-form">
+                            <label for="kycAccountNumber">Account Number:</label>
+                            <input type="text" id="kycAccountNumber" name="accountNumber" required pattern="\d+"
+                                title="Please enter a valid account number."><br>
+
+                            <div class="button-container">
+                                <button type="button" class="find-button">Find</button>
+                            </div><br>
+
+                            <label for="kycBranchName">Branch Name:</label>
+                            <select type="text" id="kycBranchName" name="branchName" required>
+                                <option value="" disabled selected>Select a branch</option>
+                                <option value="Ahmedabad">Ahmedabad</option>
+                                <option value="Bangalore City">Bangalore City</option>
+                                <option value="Bhopal">Bhopal</option>
+                                <option value="Chennai Mount Road">Chennai Mount Road</option>
+                                <option value="Delhi Connaught Place">Delhi Connaught Place</option>
+                                <option value="Hyderabad">Hyderabad</option>
+                                <option value="Kolkata">Kolkata</option>
+                                <option value="Lucknow">Lucknow</option>
+                                <option value="Mumbai Fort">Mumbai Fort</option>
+                                <option value="Pune Camp">Pune Camp</option>
+                                <option value="Jaipur">Jaipur</option>
+                                <option value="Chandigarh Sector 17">Chandigarh Sector 17</option>
+                                <option value="Surat">Surat</option>
+                                <option value="Patna">Patna</option>
+                                <option value="Guwahati">Guwahati</option>
+                                <option value="Ranchi">Ranchi</option>
+                                <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+                                <option value="Nagpur">Nagpur</option>
+                                <option value="Ludhiana">Ludhiana</option>
+                                <option value="Mumbra">Mumbra</option>
+                                <option value="Noida Sector 18">Noida Sector 18</option>
+                                <option value="Indore">Indore</option>
+                                <option value="Coimbatore">Coimbatore</option>
+                                <option value="Visakhapatnam">Visakhapatnam</option>
+                                <option value="Vadodara">Vadodara</option>
+                                <option value="Mysore">Mysore</option>
+                                <option value="Jalandhar">Jalandhar</option>
+                                <option value="Rajkot">Rajkot</option>
+                                <option value="Nashik">Nashik</option>
+                                <option value="Jabalpur">Jabalpur</option>
+                                <option value="Agra">Agra</option>
+                                <option value="Varanasi">Varanasi</option>
+                                <option value="Faridabad">Faridabad</option>
+                                <option value="Ghaziabad">Ghaziabad</option>
+                                <option value="Madurai">Madurai</option>
+                                <option value="Udaipur">Udaipur</option>
+                                <option value="Dehradun">Dehradun</option>
+                                <option value="Amritsar">Amritsar</option>
+                                <option value="Mangalore">Mangalore</option>
+                                <option value="Bhubaneswar">Bhubaneswar</option>
+                                <option value="Kanpur">Kanpur</option>
+                                <option value="Allahabad">Allahabad</option>
+                                <option value="Guntur">Guntur</option>
+                                <option value="Vijayawada">Vijayawada</option>
+                                <option value="Aurangabad">Aurangabad</option>
+                                <option value="Siliguri">Siliguri</option>
+                                <option value="Jamshedpur">Jamshedpur</option>
+                                <option value="Raipur">Raipur</option>
+                                <option value="Kolhapur">Kolhapur</option>
+                                <option value="Meerut">Meerut</option>
+                                <option value="Trichy">Trichy</option>
+                                <!-- Thane District Branches -->
+                                <option value="Thane">Thane</option>
+                                <option value="Dombivli">Dombivli</option>
+                                <option value="Kalyan">Kalyan</option>
+                                <option value="Vasai">Vasai</option>
+                                <option value="Bhiwandi">Bhiwandi</option>
+                                <option value="Mira Road">Mira Road</option>
+                                <option value="Naupada Thane">Naupada Thane</option>
+                                <option value="Mulund West">Mulund West</option>
+                                <option value="Ulhasnagar">Ulhasnagar</option>
+                                <option value="Kalwa">Kalwa</option>
+                            </select>
+                            <label for="kycCustomerId">Customer ID:</label>
+                            <input type="text" id="kycCustomerId" name="customerId" required readonly><br>
+
+                            <label for="kycAccountType">Account Type:</label>
+                            <select id="kycAccountType" name="accountType" required>
+                                <option value="">Select Account Type</option>
+                                <option value="savings">Savings</option>
+                                <option value="current">Current</option>
+                            </select><br>
+
+                            <label for="kycName">Name:</label>
+                            <input type="text" id="kycName" name="name" required><br>
+
+                            <label for="kycDob">Date of Birth:</label>
+                            <input type="date" id="kycDob" name="dob" required><br>
+
+                            <label for="kycGender">Gender:</label>
+                            <select id="kycGender" name="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select><br>
+
+                            <label for="kycGuardianName">Name of Guardian:</label>
+                            <input type="text" id="kycGuardianName" name="guardianName" required><br>
+
+                            <label for="kycReligion">Religion:</label>
+                            <select id="kycReligion" name="religion" required>
+                                <option value="">Select Religion</option>
+                                <option value="hindu">Hindu</option>
+                                <option value="muslim">Muslim</option>
+                                <option value="christian">Christian</option>
+                                <option value="other">Other</option>
+                            </select><br>
+
+                            <label for="kycPanNumber">PAN Number:</label>
+                            <input type="text" id="kycPanNumber" name="panNumber" required
+                                pattern="^[A-Z]{5}[0-9]{4}[A-Z]{1}$" title="Please enter a valid PAN number."><br>
+
+                            <label for="kycAadharNumber">Aadhar Number:</label>
+                            <input type="text" id="kycAadharNumber" name="aadharNumber" required pattern="^\d{12}$"
+                                title="Please enter a valid 12-digit Aadhar number."><br>
+
+                            <label for="kycMobileNumber">Mobile Number:</label>
+                            <input type="tel" id="kycMobileNumber" name="mobileNumber" required pattern="^\d{10}$"
+                                title="Please enter a valid 10-digit mobile number."><br>
+
+                            <label for="kycEmail">Email ID:</label>
+                            <input type="email" id="kycEmail" name="email" required><br>
+
+                            <label for="kycAddress">Address:</label>
+                            <textarea id="kycAddress" name="address" rows="4" required></textarea><br>
+
+                            <div class="button-container">
+                                <button class="Updateing" type="submit">Update</button>
+                                <button type="reset">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+                <div id="viewBalance" class="tab-content" style="display: none;">
+                    <div class="ViewContainer">
+                        <h1>SKYWARD BANK: BALANCE ENQUIRY</h1>
+
+                        <!-- Account and Find Button -->
+                        <div class="ViewFormBox">
+                            <label class="ViewLabel" for="accountNumber">Account No:</label>
+                            <input type="text" id="accountNumber" class="ViewInput" placeholder="Enter account number">
+                            <button class="ViewFindButton" onclick="fetchAccountDetails()">Find</button>
+                        </div>
+
+                        <!-- Date filters for transaction history -->
+                        <div class="ViewFormBox">
+                            <label class="ViewLabel">Start Date:</label>
+                            <input type="date" id="startDate">
+                            <label class="ViewLabel">End Date:</label>
+                            <input type="date" id="endDate">
+                        </div>
+
+                        <!-- Account Info -->
+                        <div class="ViewFormBox">
+                            <label class="ViewLabel">Current Amount:</label>
+                            <input type="text" id="currentAmount" class="ViewInput" readonly>
+                            <label class="ViewLabel">Name:</label>
+                            <input type="text" id="CustomersName" class="ViewInput" readonly>
+                        </div>
+
+                        <!-- Print Button -->
+                        <div class="buttonContainer">
+                            <button class="ViewResetButton" onclick="ViewresetForm()">Reset</button>
+                            <button class="ViewSubmitButton" onclick="window.print()">Print</button>
+                        </div>
+                        <!-- Transaction Table -->
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Transaction</th>
+                                    <th>Sender (Ac)</th>
+                                    <th>Amount</th>
+                                    <th>Receiver (Ac)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transactionTableBody">
+                                <!-- Transactions will be dynamically inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+                <div id="transferMoney" class="tab-content" style="display: none;">
+                    <div class="transfer-container">
+                        <h1>Transfer Funds</h1>
+                        <form id="transferForm">
+                            <!-- From Account Section -->
+                            <label class="transferLabel" for="fromAccountNumber">From Account No.:</label>
+                            <input class="transferInput" type="text" id="fromAccountNumber" name="fromAccountNumber"
+                                required>
+                            <button type="button" class="transferButton transferFindBtn1"
+                                onclick="disableForm()">Find</button><br>
+
+                            <label class="transferLabel" for="fromName">Name:</label>
+                            <input class="transferInput" type="text" id="fromName" name="fromName" readonly><br>
+
+                            <label class="transferLabel" for="fromCustomerId">Customer ID:</label>
+                            <input class="transferInput" type="text" id="fromCustomerId" name="fromCustomerId"
+                                readonly><br>
+
+                            <label class="transferLabel" for="fromMobile">Mobile No.:</label>
+                            <input class="transferInput" type="text" id="fromMobile" name="fromMobile" readonly><br>
+
+                            <label class="transferLabel" for="amount">Amount:</label>
+                            <input class="transferInput" type="text" id="amount" name="amount" required
+                                pattern="\d+(\.\d{2})?" title="Enter a valid amount"><br>
+
+                            <!-- To Account Section -->
+                            <h3>To</h3>
+                            <label class="transferLabel" for="toAccountNumber">To Account No.:</label>
+                            <input class="transferInput" type="text" id="toAccountNumber" name="toAccountNumber"
+                                required>
+                            <button type="button" class="transferButton transferFindBtn"
+                                onclick="disableForm()">Find</button><br>
+
+                            <label class="transferLabel" for="toName">Name:</label>
+                            <input class="transferInput" type="text" id="toName" name="toName" readonly><br>
+
+                            <label class="transferLabel" for="toCustomerId">Customer ID:</label>
+                            <input class="transferInput" type="text" id="toCustomerId" name="toCustomerId" readonly><br>
+
+                            <label class="transferLabel" for="toMobile">Mobile No.:</label>
+                            <input class="transferInput" type="text" id="toMobile" name="toMobile" readonly><br>
+
+                            <!-- Transfer and Reset Buttons -->
+                            <div class="transfer-buttonContainer">
+                                <button type="submit" class="transferSubmitButton">Transfer</button>
+                                <button type="reset" class="transferResetButton">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="allCustomers" class="tab-content" style="display: none;">
+                    <div class="ConstoContainer">
+                        <h1>SKYWARD BANK: BALANCE ENQUIRYCoutomes details</h1>
+
+                        <!-- Account and Find Button -->
+                        <div class="ConstoFormBox">
+                            <label class="ConstoLabel" for="contoaccountNumber">Account No:</label>
+                            <input type="text" id="contoaccountNumber" class="ConstoInput"
+                                placeholder="Enter account number">
+                            <button class="ConstoFindButton" onclick="fetchCustomerDetails()">Find</button>
+                        </div>
+
+                        <!-- Account Info -->
+                        <div class="ConstoFormBox">
+                            <label class="ConstoLabel">Name:</label>
+                            <input type="text" id="constCustomersName" class="ConstoInput" readonly>
+                            <label class="ConstoLabel">Customer Id:</label>
+                            <input type="text" id="CustomersId" class="ConstoInput" readonly>
+                        </div>
+
+                        <!-- Print Button -->
+                        <div class="buttonContainer">
+                            <button class="DeactivateButton" onclick="confirmDeactivate()">Deactivate Account</button>
+                        </div>
+
+                        <!-- Transaction Table -->
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Account No</th>
+                                    <th>Customer Id</th>
+                                    <th>Branch Name</th>
+                                    <th>Name</th>
+                                    <th>Account Type</th>
+                                    <th>Date of Birth</th>
+                                    <th>Gender</th>
+                                    <th>Aadhar No</th>
+                                    <th>Pan No</th>
+                                    <th>Mobile No</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ConttransactionTableBody">
+                                <!-- Transactions will be dynamically inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="script2.js"></script>
+</body>
+
+</html>
