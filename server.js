@@ -9,6 +9,14 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// Serve static files
+app.use(express.static('public'));
+
+// Redirect to login page automatically
+app.get('/', (req, res) => {
+    res.redirect('/login.html');
+});
+
 // Connect to MongoDB (without deprecated options)
 mongoose.connect('mongodb://localhost:27017/skyward_bank')
   .then(() => {
@@ -1020,13 +1028,11 @@ app.get('/admin-logout', (req, res) => {
 
 
 
-
-
 // Start the server
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
-    console.log(`Localhost link: http://localhost:${port}/login.html`);
+    console.log(`Localhost link: http://localhost:${port}`);
 });
 
 
