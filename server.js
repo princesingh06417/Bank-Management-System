@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 });
 
 // Connect to MongoDB (without deprecated options)
-mongoose.connect('mongodb://localhost:27017/skyward_bank')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/skyward_bank')
   .then(() => {
     console.log('Connected to MongoDB');
   })
