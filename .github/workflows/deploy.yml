@@ -20,17 +20,24 @@ jobs:
         cache: 'npm'
 
     - name: Install dependencies
-      run: npm ci
+      run: npm install
 
     - name: Run tests (if any)
       run: npm test || echo "No tests defined"
 
+    # Create ZIP file for Elastic Beanstalk
+    - name: Create ZIP package
+      run: zip -r app.zip . -x "*.git*"
+
+    # Deploy to Elastic Beanstalk
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v21
       with:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        application_name: Bank-Management # Update with your EB app name
-        environment_name: Bank-Management-env # Update with your EB env name
-        region: ${{ secrets.AWS_REGION }}        version_label: ${{ github.sha }}
+        application_name: Bank-Management
+        environment_name: Bank-Management-env
+        region: ${{ secrets.AWS_REGION }}
+        version_label: ${{ github.sha }}
         version_description: ${{ github.event.head_commit.message }}
+        deployment_package: app.zip
